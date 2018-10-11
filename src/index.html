@@ -10,12 +10,15 @@
     
     <div class="vertical-center">
         <div class="container">
-            <p>&nbsp;</p>
+            <ul id="messages" class="list-unstyled">
+
+            </ul>
+            <hr />
             <form role="form" id="chat_form" onsubmit="sendMessage(); return false;">
                 <div class="form-group">
                     <input class="form-control" type="text" name="message" id="message" placeholder="Type Your Message to Chat" value="" autofocus/>
                 </div>
-                <button type="button" id="send" class="btn btn-primary" onclick="sendMessage();">Send!</button>
+                <button type="button" id="send" class="btn btn-primary" onclick="sendMessage();">Send Message</button>
             </form>
         </div>
     </div>
