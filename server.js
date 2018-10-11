@@ -15,10 +15,12 @@ ws.on('connection', function(ws) {
 ws.on('message', function(message) {
     for(var i = 0 ; i< clients.length; i++) {
         var clientSocket = clients[i].ws
-        console.log("clients [%s]: %s", clients[i].id, message)
-        clientSocket.send(JSON.stringify({
-            'id': client_uuid,
-            'message': message,
-        }))
+        if(clientSocket.readyState == WebSocket.OPEN) {
+            console.log("clients [%s]: %s", clients[i].id, message)
+            clientSocket.send(JSON.stringify({
+                'id': client_uuid,
+                'message': message,
+             }))
+        }
     }
 })
