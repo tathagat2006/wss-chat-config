@@ -24,3 +24,12 @@ ws.on('message', function(message) {
         }
     }
 })
+
+ws.on('close', function() {
+    for(var i = 0;i< clients.length; i++) {
+        if(clients[i].id == client_uuid) {
+            console.log('client [%s] disconnected', client_uuid)
+            clients.splice(i,1)
+        }
+    }
+})
