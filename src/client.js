@@ -6,3 +6,11 @@ ws.onclose('open', function() {
 function sendMessage(){
     ws.send($('#message').val())
 }
+
+ws.onclose('message', function(e) {
+    var data = JSON.parse(e.data)
+    var messages = document.getElementById('messages')
+    var message = document.createElement('li')
+    message.innerHTML = data.message
+    messages.appendChild(message)
+})
