@@ -39,6 +39,11 @@ function sendMessage() {
     messageField.focus()
 }
 
+ws.on('close', function(e) {
+    appendLog('Connection closed!')
+    console.log('Connection closed!')
+})
+
 function disconnect() {
     ws.close()
 }
