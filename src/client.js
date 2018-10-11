@@ -30,3 +30,16 @@ ws.on('message', function(e) {
     console.log("ID: [%s]", data.id, data.message)
 })
 
+function sendMessage() {
+    var messageField = document.getElementById('message');
+    if(ws.readyState == WebSocket.OPEN) {
+        ws.send(messageField.value)
+    }
+    messageField.value = ""
+    messageField.focus()
+}
+
+function disconnect() {
+    ws.close()
+}
+
