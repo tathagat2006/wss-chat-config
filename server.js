@@ -1,5 +1,7 @@
-var WebSocketserver = require('ws').Server,
+var WebSocket = require('ws')
+var WebSocketserver = WebSocket.Server,
 ws = new WebSocketserver({port:8080})
+var uuid = require('node-uuid')
 
 // Connection: Upgrade;
 // Upgrade: websocket;
@@ -26,7 +28,7 @@ ws.on('connection', function(ws) {
     var client_uuid = uuid.v4();
     var nickname = "AnonymousUSER" + clientIdx
     clientIdx +=1;
-    clients.push({"id": id, "ws": ws, "nickname": nickname})
+    clients.push({"id": client_uuid, "ws": ws, "nickname": nickname})
     var connect_message = nickname + 'has connected!'
     wsSend('notification',client_uuid,nickname,connect_message)
 })

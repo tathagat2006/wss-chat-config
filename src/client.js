@@ -1,10 +1,10 @@
-var ws = new WebSocket('ws://localhost:8080')
+var ws = new WebSocket('ws://localhost:8080/')
 var nickname = ""
 
 
-ws.on('open', function() {
+ws.onopen = function() {
     console.log('connection opened to the server')
-})
+}
 
 function appendLog(type,nickname,message) {
     var messages = document.getElementById('messages')
@@ -23,12 +23,12 @@ function appendLog(type,nickname,message) {
 }
 
 
-ws.on('message', function(e) {
+ws.onmessage = function(e) {
     var data = JSON.parse(e.data)
     nickname = data.nickname
     appendLog(data.type,data.nickname,data.message)
     console.log("ID: [%s]", data.id, data.message)
-})
+}
 
 function sendMessage() {
     var messageField = document.getElementById('message');
@@ -39,10 +39,10 @@ function sendMessage() {
     messageField.focus()
 }
 
-ws.on('close', function(e) {
+ws.onclose = function(e) {
     appendLog('Connection closed!')
     console.log('Connection closed!')
-})
+}
 
 function disconnect() {
     ws.close()
