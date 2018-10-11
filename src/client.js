@@ -14,3 +14,4 @@ ws.onclose('message', function(e) {
     message.innerHTML = data.message
     messages.appendChild(message)
 })
+

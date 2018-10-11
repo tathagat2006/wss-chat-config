@@ -8,7 +8,8 @@ var clients = [];
 
 ws.on('connection', function(ws) {
     var client_uuid = uuid.v4();
-    clients.push({"id": id, "ws": ws})
+    var nickname = client_uuid.substr(0,8)
+    clients.push({"id": id, "ws": ws, "nickname": nickname})
     console.log("clients [%s] connected", clients_uuid) 
 })
 
