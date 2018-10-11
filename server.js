@@ -45,13 +45,21 @@ ws.on('message', function(message) {
     }
 })
 
-
-
-ws.on('close', function() {
-    for(var i = 0;i< clients.length; i++) {
+var closeSocket = function(customMessage) {
+    for(var i = 0; i<clients.length; i++) {
         if(clients[i].id == client_uuid) {
-            console.log('client [%s] disconnected', client_uuid)
-            clients.splice(i,1)
+              var disconnect_message;
+              if(customMessage) {
+                  disconnect_message = customMessage
+              }else {
+                  disconnect_message = nickname + ' Disconnected!'
+              }
+              wsSend('notification',client_uuid,nickname,disconnect_message)
+              clients.splice(i,1)
         }
     }
+}
+
+ws.on('close', function() {
+   closeSocket();
 })
